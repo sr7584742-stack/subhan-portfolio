@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e9e6df">
+<meta name="description" content="Subhan — independent digital creative working across design, development, and digital experiences.">
+<title>Subhan® — Digital Creative</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--paper:#e9e6df;--ink:#171715;--muted:#77766f;--line:rgba(23,23,21,.2);--accent:#f04b2f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Space Grotesk',Arial,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E")}
+.topbar{height:78px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;background:rgba(233,230,223,.88);backdrop-filter:blur(18px)}
+.logo{font-size:21px;font-weight:700;letter-spacing:-1.5px}.logo span{color:var(--accent)}
+.mono{font-family:'DM Mono',monospace;text-transform:uppercase;font-size:10px;letter-spacing:.08em}
+.status{display:flex;align-items:center;gap:9px;color:#55544e}.dot{width:7px;height:7px;background:#5b9a66;border-radius:50%;box-shadow:0 0 0 4px #5b9a661c}
+.nav-right{display:flex;align-items:center;gap:24px}.navlinks{display:flex;gap:20px}.navlinks a{font-family:'DM Mono',monospace;text-transform:uppercase;font-size:10px;letter-spacing:.06em;position:relative}.navlinks a:after{content:'';position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--accent);transition:width .25s}.navlinks a:hover:after{width:100%}.menu-btn{border:1px solid var(--ink);border-radius:30px;padding:10px 17px;background:transparent;cursor:pointer;transition:.25s}.menu-btn:hover{background:var(--ink);color:var(--paper)}
+.hero{min-height:calc(100svh - 78px);padding:7vh 5vw 4vh;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.hero-top{display:flex;justify-content:space-between;gap:24px;position:relative;z-index:2}
+.kicker{max-width:240px;line-height:1.6}.hero-note{text-align:right;max-width:210px;line-height:1.6}
+.hero-title{font-size:clamp(68px,14.5vw,210px);line-height:.78;letter-spacing:-.105em;font-weight:700;margin:8vh 0 7vh;position:relative;z-index:2}
+.hero-title .line{display:block;white-space:nowrap}.hero-title .outline{color:transparent;-webkit-text-stroke:1.5px var(--ink);padding-left:10vw}
+.hero-title .asterisk{color:var(--accent);display:inline-block;font-size:.48em;vertical-align:top;letter-spacing:0;transform:translateY(-.12em);animation:spin 18s linear infinite}
+.hero-bottom{display:flex;align-items:end;justify-content:space-between;gap:20px;position:relative;z-index:2}
+.intro{font-size:clamp(16px,2vw,23px);line-height:1.35;max-width:490px;letter-spacing:-.04em}
+.scroll{display:flex;gap:12px;align-items:center}.scroll-mark{width:34px;height:34px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:18px}
+.orbit{position:absolute;width:clamp(220px,34vw,470px);aspect-ratio:1;border:1px solid #17171525;border-radius:50%;right:11%;top:27%;pointer-events:none;animation:float 8s ease-in-out infinite;transform-style:preserve-3d}.orbit .ring3d{position:absolute;inset:8% -8%;border:2px solid #f04b2f88;border-radius:50%;transform:rotateX(68deg) rotateZ(-24deg);box-shadow:0 12px 0 -5px #f04b2f33,0 24px 0 -10px #f04b2f22}.orbit .ring3d.two{inset:20% -17%;border-color:#17171540;transform:rotateX(68deg) rotateZ(35deg)}.orbital-ball{position:absolute;right:15%;top:22%;width:clamp(70px,10vw,130px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 25%,#fff3d9 0,#f58a68 15%,#f04b2f 42%,#9d2115 72%,#4b160f 100%);box-shadow:inset -12px -15px 24px #30100b66,0 25px 35px #17171530;animation:ballFloat 6s ease-in-out infinite;transform-style:preserve-3d}.orbit .orbit-core{z-index:2}
+.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #17171520;border-radius:50%;inset:12%}
+.orbit:after{inset:25%}.orbit-core{position:absolute;top:16%;left:20%;width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 8px #f04b2f16}
+.section{padding:110px 5vw;border-top:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;align-items:start;gap:25px;margin-bottom:55px}
+.section-label{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.08em}
+.section h2{font-size:clamp(42px,7vw,100px);letter-spacing:-.08em;line-height:.9;margin:0;max-width:780px}
+.work-list{border-top:1px solid var(--line)}
+.work-item{display:grid;grid-template-columns:70px 1fr auto;gap:22px;align-items:center;padding:27px 0;border-bottom:1px solid var(--line);transition:padding .3s;position:relative}
+.work-item:hover{padding-left:12px;padding-right:12px}
+.work-num{font-family:'DM Mono',monospace;color:var(--muted);font-size:11px}
+.work-name{font-size:clamp(27px,5vw,62px);letter-spacing:-.065em;font-weight:600}
+.work-type{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--muted);text-align:right;line-height:1.7}
+.work-item .arrow{color:var(--accent);font-size:25px;margin-left:8px;display:inline-block;transition:transform .25s}
+.work-item:hover .arrow{transform:translate(5px,-5px)}
+.note{font-size:12px;color:var(--muted);margin-top:25px;line-height:1.7}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:start}
+.about-copy{font-size:clamp(21px,3vw,36px);line-height:1.22;letter-spacing:-.05em;max-width:700px}
+.about-copy em{font-style:normal;color:var(--accent)}
+.about-side{padding-top:8px}.about-side p{font-size:14px;line-height:1.8;max-width:420px;color:#56554f}
+.service-list{margin-top:32px;border-top:1px solid var(--line)}
+.service{padding:13px 0;display:flex;justify-content:space-between;border-bottom:1px solid var(--line);font-size:13px}.service span:last-child{font-family:'DM Mono',monospace;color:var(--muted);font-size:10px}
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:23px 0;white-space:nowrap}
+.marquee-track{display:inline-flex;gap:28px;animation:marquee 25s linear infinite;font-size:clamp(28px,5vw,58px);font-weight:600;letter-spacing:-.06em}
+.marquee-track span{color:var(--accent)}
+.contact{background:var(--ink);color:var(--paper);padding:100px 5vw 35px}
+.contact-top{display:flex;justify-content:space-between;gap:20px;align-items:start}
+.contact h2{font-size:clamp(55px,11vw,150px);letter-spacing:-.1em;line-height:.82;margin:35px 0 55px;max-width:1000px}
+.contact h2 span{color:var(--accent)}
+.contact-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:85px}
+.contact-link{border:1px solid #e9e6df60;padding:13px 17px;border-radius:30px;font-size:13px;transition:.25s}
+.contact-link:hover{background:var(--paper);color:var(--ink)}
+.footer{border-top:1px solid #e9e6df40;padding-top:18px;display:flex;justify-content:space-between;gap:15px;color:#aaa9a1}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes float{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-18px) rotate(5deg)}}@keyframes ballFloat{0%,100%{transform:translate3d(0,0,35px) rotate(-8deg)}50%{transform:translate3d(-12px,-22px,70px) rotate(12deg)}}@keyframes marquee{to{transform:translateX(-50%)}}
+@media(max-width:700px){.topbar{height:66px;padding:0 5vw}.status{display:none}.nav-right{gap:12px}.navlinks{gap:11px}.navlinks a{font-size:9px}.menu-btn{padding:9px 11px;font-size:9px}.hero{min-height:calc(90svh - 66px);padding:6vh 6vw 28px}.hero-top{font-size:9px}.hero-note{max-width:135px}.hero-title{font-size:clamp(62px,15vw,105px);margin:10vh 0}.hero-title .outline{padding-left:3vw}.orbit{right:-14%;top:32%;width:65vw;opacity:.65}.hero-bottom{align-items:start;flex-direction:column}.scroll{margin-top:12px}.section{padding:75px 6vw}.section-head{margin-bottom:35px}.work-item{grid-template-columns:28px 1fr;gap:10px;padding:22px 0}.work-type{grid-column:2;text-align:left;margin-top:-5px}.work-name{font-size:clamp(27px,8vw,45px)}.about-grid{grid-template-columns:1fr;gap:30px}.contact{padding:75px 6vw 25px}.contact h2{margin:55px 0 40px}.contact-links{margin-bottom:55px}.footer{font-size:9px;flex-wrap:wrap}.section h2{font-size:clamp(42px,12vw,75px)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<header class="topbar">
+  <a class="logo" href="#home">SUBHAN<span>®</span></a>
+  <div class="status mono"><i class="dot"></i> Available for select projects</div>
+  <div class="nav-right"><nav class="navlinks" aria-label="Main navigation"><a href="#home">Home</a><a href="#about">About</a><a href="#work">Work</a></nav><a class="menu-btn mono" href="#contact">LET'S TALK ↗</a></div>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="hero-top mono">
+    <div class="kicker">INDEPENDENT DIGITAL CREATIVE<br>PAKISTAN · WORKING WORLDWIDE</div>
+    <div class="hero-note">Design-minded.<br>Detail-obsessed.<br>Always building.</div>
+  </div>
+  <div class="orbit" aria-hidden="true"><div class="ring3d"></div><div class="ring3d two"></div><div class="orbit-core"></div><div class="orbital-ball"></div></div>
+  <h1 class="hero-title"><span class="line">MAKING</span><span class="line outline">DIGITAL<span class="asterisk">✳</span></span><span class="line">MATTER.</span></h1>
+  <div class="hero-bottom">
+    <p class="intro">I’m Subhan — I turn ideas into distinctive visuals, thoughtful websites, and digital experiences that leave a mark.</p>
+    <a class="scroll mono" href="#work"><span class="scroll-mark">↓</span> SCROLL TO EXPLORE</a>
+  </div>
+</section>
+<section class="section" id="work">
+  <div class="section-head reveal"><div class="section-label">01 / WHAT I DO</div><h2>Different skills.<br>One clear vision.</h2></div>
+  <div class="work-list reveal">
+    <a class="work-item" href="#contact"><span class="work-num">01</span><span class="work-name">Digital experiences <b class="arrow">↗</b></span><span class="work-type">Web design<br>& development</span></a>
+    <a class="work-item" href="#contact"><span class="work-num">02</span><span class="work-name">Visual identities <b class="arrow">↗</b></span><span class="work-type">Graphic design<br>& creative direction</span></a>
+    <a class="work-item" href="#contact"><span class="work-num">03</span><span class="work-name">Social presence <b class="arrow">↗</b></span><span class="work-type">Content & account<br>support</span></a>
+    <a class="work-item" href="#contact"><span class="work-num">04</span><span class="work-name">Digital safety <b class="arrow">↗</b></span><span class="work-type">Security-focused<br>digital support</span></a>
+  </div>
+  <p class="note reveal">A selection of services — project previews and case studies can be added here as your work grows.</p>
+</section>
+<section class="section" id="about">
+  <div class="section-head reveal"><div class="section-label">02 / A LITTLE ABOUT ME</div></div>
+  <div class="about-grid">
+    <div class="about-copy reveal">Good work lives where <em>design, technology,</em> and a little bit of curiosity meet.</div>
+    <div class="about-side reveal"><p>I’m Subhan, a digital creative from Pakistan working across graphic design, web experiences, and social media support. I care about the small details just as much as the big idea — from the first visual to the final interaction.</p><p>My goal is simple: make digital work feel considered, useful, and unmistakably yours.</p>
+      <div class="service-list">
+        <div class="service"><span>Graphic design</span><span>01</span></div>
+        <div class="service"><span>Web design & development</span><span>02</span></div>
+        <div class="service"><span>Social media support</span><span>03</span></div>
+        <div class="service"><span>Digital security support</span><span>04</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="marquee" aria-hidden="true"><div class="marquee-track">DESIGN WITH INTENT <span>✳</span> BUILD WITH PURPOSE <span>✳</span> MAKE IT MATTER <span>✳</span> DESIGN WITH INTENT <span>✳</span> BUILD WITH PURPOSE <span>✳</span> MAKE IT MATTER <span>✳</span>&nbsp;</div></div>
+<section class="section" id="approach">
+  <div class="section-head reveal"><div class="section-label">03 / THE APPROACH</div><h2>Thoughtful by<br>design.</h2></div>
+  <div class="about-grid">
+    <div class="about-copy reveal">Less noise. More <em>meaning.</em></div>
+    <div class="about-side reveal"><p>Every project starts with understanding what matters. Then I shape the direction, refine the details, and build an experience that works beautifully across screens.</p>
+      <div class="service-list">
+        <div class="service"><span>01 — Understand the idea</span><span>PLAN</span></div>
+        <div class="service"><span>02 — Shape the direction</span><span>DESIGN</span></div>
+        <div class="service"><span>03 — Build and refine</span><span>MAKE</span></div>
+        <div class="service"><span>04 — Polish the details</span><span>SHIP</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <div class="contact-top"><div class="section-label" style="color:#aaa9a1">04 / GET IN TOUCH</div><div class="mono" style="color:#aaa9a1">HAVE A GOOD ONE IN MIND?</div></div>
+  <h2>LET’S MAKE<br><span>IT HAPPEN.</span></h2>
+  <div class="contact-links">
+    <a class="contact-link" href="https://t.me/mythifier" target="_blank" rel="noreferrer">Telegram ↗</a>
+    <a class="contact-link" href="https://discord.com/users/" target="_blank" rel="noreferrer" onclick="event.preventDefault();alert('Find me on Discord: subhvn')">Discord: subhvn ↗</a>
+    <a class="contact-link" href="mailto:shubi@cyberservices.com">Email me ↗</a>
+    <a class="contact-link" href="#home">Back to top ↑</a>
+  </div>
+  <footer class="footer mono"><span>© <span id="year"></span> SUBHAN®</span><span>DESIGNED WITH INTENT</span><span>PAKISTAN · WORLDWIDE</span></footer>
+</section>
+</main>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);} });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+const tiltItems = document.querySelectorAll('.service,.project');
+tiltItems.forEach(card => {
+  card.addEventListener('pointermove', e => {
+    if (e.pointerType === 'touch') return;
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX-r.left)/r.width-.5;
+    const y = (e.clientY-r.top)/r.height-.5;
+    card.style.transform = `perspective(900px) rotateX(${-y*5}deg) rotateY(${x*6}deg) translateY(-3px)`;
+  });
+  card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+});
+const hero = document.querySelector('.hero');
+const orbit = document.querySelector('.orbit');
+hero.addEventListener('pointermove', e => {
+  if (e.pointerType === 'touch') return;
+  const r = hero.getBoundingClientRect();
+  const x = (e.clientX-r.left)/r.width-.5;
+  const y = (e.clientY-r.top)/r.height-.5;
+  orbit.style.marginLeft = `${x*12}px`;
+  orbit.style.marginTop = `${y*12}px`;
+});
+hero.addEventListener('pointerleave', () => { orbit.style.marginLeft=''; orbit.style.marginTop=''; });
+</script>
+</body>
+</html>
